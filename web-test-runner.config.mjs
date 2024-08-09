@@ -26,7 +26,10 @@ import { fileURLToPath } from "node:url";
 import { defaultReporter } from "@web/test-runner";
 import { playwrightLauncher } from "@web/test-runner-playwright";
 import { esbuildPlugin } from "@web/dev-server-esbuild";
+import { fromRollup } from '@web/dev-server-rollup';
+import rollupBabel from '@rollup/plugin-babel';
 
+const babel = fromRollup(rollupBabel);
 
 /** @type {import("@web/test-runner").TestRunnerConfig} */
 export default {
@@ -34,9 +37,9 @@ export default {
   coverage: true,
   files: ["tests/**/*.spec.ts"],
   browsers: [
-    playwrightLauncher({ product: "chromium" }),
+    // playwrightLauncher({ product: "chromium" }),
     // playwrightLauncher({ product: 'webkit' }),
-    // playwrightLauncher({ product: 'firefox' }),
+    playwrightLauncher({ product: 'firefox' }),
   ],
   nodeResolve: true,
   CoverageConfig: {
@@ -50,6 +53,14 @@ export default {
     nativeInstrumentation: false,
   },
   plugins: [
+    babel({
+      // avoid running babel on code that doesn't need it
+      include: ['src/**/*.ts'],
+      babelHelpers: 'bundled',
+      presets: ['@babel/preset-typescript'],
+      plugins: ['istanbul'],
+      extensions: [".ts"]
+    }),
     esbuildPlugin({
       target: "es2020",
       ts: true,

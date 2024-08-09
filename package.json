@@ -9,11 +9,15 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@babel/preset-typescript": "^7.24.7",
     "@esm-bundle/chai": "^4.3.4-fix.0",
+    "@rollup/plugin-babel": "^6.0.4",
     "@types/mocha": "^10.0.7",
     "@web/dev-server-esbuild": "^1.0.2",
+    "@web/dev-server-rollup": "^0.6.4",
     "@web/test-runner": "^0.18.2",
     "@web/test-runner-playwright": "^0.11.0",
+    "babel-plugin-istanbul": "^7.0.0",
     "typescript": "^5.5.4"
   }
 }
