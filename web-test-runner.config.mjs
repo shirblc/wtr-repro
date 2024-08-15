@@ -37,12 +37,12 @@ export default {
   coverage: true,
   files: ["tests/**/*.spec.ts"],
   browsers: [
-    // playwrightLauncher({ product: "chromium" }),
+    playwrightLauncher({ product: "chromium" }),
     // playwrightLauncher({ product: 'webkit' }),
-    playwrightLauncher({ product: 'firefox' }),
+    // playwrightLauncher({ product: 'firefox' }),
   ],
   nodeResolve: true,
-  CoverageConfig: {
+  coverageConfig: {
     include: ["src/**/*.ts"],
     exclude: [
       "node_modules/**",
